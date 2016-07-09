@@ -1,0 +1,8 @@
+{
+  "name": "trainer",
+  "version": "0.0.1",
+  "main": "main.js",
+  "dependencies": {
+    "synaptic": "^1.0.6"
+  }
+}
