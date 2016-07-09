@@ -1,5 +1,5 @@
 var synaptic = require('synaptic');
-var network = new synaptic.Architect.Perceptron(20, 40, 40, 40, 3);
+var network = new synaptic.Architect.Perceptron(20, 20, 10, 6, 3);
 
 var input = [{input: [0,27.194999933242798,1,18.80900001525879,1,26.8439998626709,0,16.61300015449524,1,14.836999893188477,1,12.00600004196167,1,19.361999988555908,1,8.736000061035156,1,14.95199990272522,0,15.728000164031982], output: [1,0,0] },
     {input: [0,23.080999851226807,0,26.938000202178955,0,45.275999784469604,0,18.95300006866455,0,33.4060001373291,1,25.66599988937378,0,38.06100010871887,1,14.996999979019165,0,11.087999820709229,0,12.69100022315979], output: [1,1,0] },
@@ -26,18 +26,11 @@ for (var i = 0; i < input.length; i++){
     }
 }
 
-var test = [1,10.477999925613403,1,14.225000143051147,1,25.835999965667725,1,17.990000009536743,1,10.202999830245972,1,9.481000185012817,1,22.579999923706055,1,8.861999988555908,0,14.937000036239624,1,23.45799994468689];
-for (j = 1; j < 20; j+=2){
-    test[j] /= 60;
-    if (test[j] > 1){
-        test[j] = 1;
-    }
-}
 
 // console.log(JSON.stringify(input));
 var trainer = new synaptic.Trainer(network);
 trainer.train(input, {
-    rate: .1,
+    rate: .01,
     iterations: 20000,
     error: .005,
     shuffle: true,
@@ -45,4 +38,4 @@ trainer.train(input, {
     cost: synaptic.Trainer.cost.CROSS_ENTROPY
 });
 
-console.log(network.activate(test));
+console.log(network.standalone().toString());
